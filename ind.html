@@ -120,3 +120,86 @@ input:focus{
   font-size:13px;
   padding-left:16px;
 }
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Phishing URL Detector 🔍</h1>
+
+  <div class="input-wrapper">
+    <input id="urlInput" placeholder="Paste website link here">
+    <button class="paste-btn" onclick="pasteURL()" title="Paste from clipboard">📋</button>
+  </div>
+
+  <button class="check-btn" onclick="checkURL()">Check</button>
+
+  <div id="result" class="result-box"></div>
+  <ul id="reasons" class="reason-list"></ul>
+</div>
+
+<script>
+/* --------- SYSTEM PROMPT FOR AI ---------- */
+const SYSTEM_PROMPT = `
+You are a cybersecurity expert. Analyze a URL and classify it strictly as:
+
+SAFE
+SUSPICIOUS
+PHISHING
+
+Provide short reasons. Consider:
+- fake login pages
+- brand impersonation
+- unusual domains
+- IP address instead of domain
+- too many subdomains
+- HTTP vs HTTPS
+- phishing keywords (login, verify, bank, unlock)
+- shortened links
+- typosquatting
+
+Respond in the format:
+
+VERDICT: <SAFE/SUSPICIOUS/PHISHING>
+REASONS:
+- reason 1
+- reason 2
+- reason 3
+`;
+
+/* -------- LLM API CALL ---------- */
+async function enhancePrompt(userPrompt){
+  try{
+    const chatHistory = [
+      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'user', content: userPrompt }
+    ];
+
+    const response = await fetch("https://text.pollinations.ai/openai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "openai",
+        messages: chatHistory
+      })
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || "No AI response";
+  }catch(err){
+    console.error(err);
+    return "AI analysis failed.";
+  }
+}
+
+/* -------- Paste from clipboard ---------- */
+async function pasteURL(){
+  try{
+    const text = await navigator.clipboard.readText();
+    document.getElementById("urlInput").value = text;
+  }catch(err){
+    alert("Clipboard access blocked. Please paste manually.");
+  }
+}
