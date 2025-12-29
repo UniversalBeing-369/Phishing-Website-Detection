@@ -287,3 +287,22 @@ async function checkURL(){
       reasonsList.appendChild(li);
     });
   }
+/* ----------- AI INTEGRATION ----------- */
+
+  let aiLi = document.createElement("li");
+  aiLi.innerHTML = "🤖 AI analyzing...";
+  aiLi.style.fontWeight = "600";
+  aiLi.style.marginTop = "8px";
+  reasonsList.appendChild(aiLi);
+
+  const aiResponse = await enhancePrompt(
+    `Analyze this URL: ${url}
+Detected patterns: ${reasons.join(", ")}`
+  );
+
+  aiLi.innerHTML = "🤖 AI Verdict:<br>" + aiResponse.replace(/\n/g,"<br>");
+}
+</script>
+
+</body>
+</html>
