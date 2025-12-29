@@ -266,4 +266,24 @@ async function checkURL(){
     score += 3;
     reasons.push("Uses punycode");
   }
-  
+
+  if(score<=2){
+    result.className="result-box safe";
+    result.innerHTML="SAFE WEBSITE ✔️";
+  }else if(score<=6){
+    result.className="result-box suspicious";
+    result.innerHTML="SUSPICIOUS ⚠️ — be careful";
+  }else{
+    result.className="result-box phishing";
+    result.innerHTML="LIKELY PHISHING 🚨";
+  }
+
+  if(reasons.length===0){
+    reasonsList.innerHTML="<li>No suspicious pattern detected.</li>";
+  }else{
+    reasons.forEach(r=>{
+      let li=document.createElement("li");
+      li.textContent=r;
+      reasonsList.appendChild(li);
+    });
+  }
