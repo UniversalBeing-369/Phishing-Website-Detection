@@ -22,3 +22,101 @@ body{
   align-items:center;
   justify-content:center;
 }
+/* Card */
+.card{
+  width:420px;
+  padding:26px 28px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  backdrop-filter:blur(12px);
+}
+
+/* Title */
+h1{
+  text-align:center;
+  font-size:22px;
+  margin-bottom:20px;
+  font-weight:600;
+}
+
+/* Input wrapper */
+.input-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+/* Input */
+input{
+  width:100%;
+  padding:12px 44px 12px 14px;
+  border-radius:14px;
+  border:1.5px solid #d9e3f0;
+  outline:none;
+  font-size:14px;
+}
+
+input:focus{
+  border-color:#6c8cff;
+  box-shadow:0 0 0 3px rgba(108,140,255,0.15);
+}
+
+/* Paste icon button */
+.paste-btn{
+  position:absolute;
+  right:10px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:18px;
+  opacity:0.7;
+  transition:0.2s;
+}
+
+.paste-btn:hover{
+  opacity:1;
+}
+
+/* Check button */
+.check-btn{
+  width:100%;
+  padding:12px 16px;
+  border-radius:14px;
+  border:none;
+  margin-top:10px;
+  background:#6c8cff;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* Result styles */
+.result-box{
+  margin-top:16px;
+  padding:16px;
+  border-radius:14px;
+  font-weight:600;
+  text-align:center;
+  display:none;
+}
+.safe{
+  background:#e9ffee;
+  color:#1c7c36;
+}
+
+.suspicious{
+  background:#fff7e8;
+  color:#966000;
+}
+
+.phishing{
+  background:#ffe8e8;
+  color:#a30000;
+}
+
+.reason-list{
+  margin-top:12px;
+  font-size:13px;
+  padding-left:16px;
+}
