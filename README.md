@@ -1,4 +1,11 @@
-#🔐 Phishing Website Detection System
+<h1 align="center">
+  🔐 Phishing Website Detection System
+</h1>
+
+<p align="center">
+  <i>A simple and smart way to detect phishing websites</i>
+</p>
+
 
 Phishing websites are fake websites created to trick users into sharing personal information such as usernames, passwords, and bank details. Many people fall into these traps because phishing links often look like real websites. This project, Phishing Website Detection System, helps users check whether a website link is safe or risky before opening it.
 
