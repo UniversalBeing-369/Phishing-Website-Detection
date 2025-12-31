@@ -108,9 +108,22 @@ NETRUNNER addresses this problem by combining **machine logic + AI reasoning** f
 ---
 
 ## 📸 Screenshots
-*(Add screenshots of NETRUNNER UI, scan results, and threat analysis here)*
+*no input*
 
----
+---<img width="1920" height="1080" alt="Screenshot (339)" src="https://github.com/user-attachments/assets/542fa384-2078-49b9-b3b8-717c49241c01" />
+
+*safe*
+
+<img width="1920" height="1080" alt="Screenshot (340)" src="https://github.com/user-attachments/assets/a62d2d94-dca5-4516-9722-9261ab68610b" />
+
+*moderate*
+
+<img width="1920" height="1080" alt="Screenshot (341)" src="https://github.com/user-attachments/assets/749fde93-e967-4935-ad43-5e01ad322585" />
+
+*danger*
+
+<img width="1920" height="1080" alt="Screenshot (342)" src="https://github.com/user-attachments/assets/43ad6cd1-c11e-4cb6-93ba-cf6068ac9db0" />
+
 
 ## 👨‍💻 Author
 - **G J GNANAJAYAM**
