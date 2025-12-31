@@ -113,14 +113,9 @@ NETRUNNER addresses this problem by combining **machine logic + AI reasoning** f
 ---
 
 ## 👨‍💻 Author
-- **Your Name**
+- **G J GNANAJAYAM**
 - Project: NETRUNNER – Phishing Website Detection System
-- GitHub: *your-github-username*
+
 
 ---
 
-## 📄 License
-This project is developed for **educational and academic purposes only**.  
-Unauthorized commercial use is not permitted.
-
----
