@@ -1,309 +1,1078 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Phishing URL Detector</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETRUNNER v3.0 - ADVANCED SECURITY PROTOCOL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000000;
+            color: #00ffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:"Poppins",sans-serif;
-}
+        /* Animated matrix-style background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(255, 0, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 15s linear infinite;
+            z-index: 0;
+        }
 
-body{
-  min-height:100vh;
-  background:linear-gradient(135deg,#02345f,#320101);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-/* Card */
-.card{
-  width:420px;
-  padding:26px 28px;
-  border-radius:20px;
-  background:rgba(160, 59, 120, 0.295);
-  box-shadow:0 20px 40px rgba(0,0,0,0.08);
-  backdrop-filter:blur(12px);
-}
+        /* Floating particles */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #00ffff, transparent),
+                radial-gradient(2px 2px at 60px 70px, #ff00ff, transparent),
+                radial-gradient(1px 1px at 50px 50px, #00ffff, transparent),
+                radial-gradient(1px 1px at 130px 80px, #ff00ff, transparent),
+                radial-gradient(2px 2px at 90px 10px, #00ff00, transparent);
+            background-size: 200px 200px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+            animation: floatParticles 20s linear infinite;
+            opacity: 0.6;
+            z-index: 0;
+        }
 
-/* Title */
-h1{
-  text-align:center;
-  font-size:22px;
-  margin-bottom:20px;
-  font-weight:600;
-  color:turquoise
-}
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
 
-/* Input wrapper */
-.input-wrapper{
-  position:relative;
-  display:flex;
-  align-items:center;
-}
+        @keyframes floatParticles {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-200px); }
+        }
 
-/* Input */
-input{
-  width:100%;
-  padding:12px 44px 12px 14px;
-  border-radius:14px;
-  border:1.5px solid #d9e3f0;
-  outline:none;
-  font-size:14px;
-}
+        /* Advanced glitch effects */
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); clip-path: inset(0 0 0 0); }
+            40% { transform: translate(-3px, -3px); clip-path: inset(10% 0 10% 0); }
+            60% { transform: translate(3px, 3px); clip-path: inset(0 10% 0 10%); }
+            80% { transform: translate(3px, -3px); clip-path: inset(10% 0 10% 0); }
+        }
 
-input:focus{
-  border-color:#6c8cff;
-  box-shadow:0 0 0 3px rgba(108,140,255,0.15);
-}
+        @keyframes glitchColor {
+            0%, 100% { text-shadow: 0 0 10px #00ffff; }
+            25% { text-shadow: -2px 0 10px #ff00ff, 2px 0 10px #00ff00; }
+            50% { text-shadow: 2px 0 10px #ff00ff, -2px 0 10px #00ffff; }
+            75% { text-shadow: 0 -2px 10px #00ff00, 0 2px 10px #ff00ff; }
+        }
 
-/* Paste icon button */
-.paste-btn{
-  position:absolute;
-  right:10px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  font-size:18px;
-  opacity:0.7;
-  transition:0.2s;
-}
+        /* Holographic pulse */
+        @keyframes holoPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(0, 255, 255, 0.5),
+                    0 0 40px rgba(0, 255, 255, 0.3),
+                    0 0 60px rgba(0, 255, 255, 0.1),
+                    inset 0 0 20px rgba(0, 255, 255, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 0.8),
+                    0 0 60px rgba(0, 255, 255, 0.5),
+                    0 0 90px rgba(0, 255, 255, 0.3),
+                    inset 0 0 30px rgba(0, 255, 255, 0.3);
+            }
+        }
 
-.paste-btn:hover{
-  opacity:1;
-}
+        /* Advanced scanline effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 255, 0.03) 2px,
+                rgba(0, 255, 255, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 10;
+            animation: scan 6s linear infinite;
+        }
 
-/* Check button */
-.check-btn{
-  width:100%;
-  padding:12px 16px;
-  border-radius:14px;
-  border:none;
-  margin-top:10px;
-  background:#010618;
-  color:white;
-  font-weight:600;
-  cursor:pointer;
-}
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
 
-/* Result styles */
-.result-box{
-  margin-top:16px;
-  padding:16px;
-  border-radius:14px;
-  font-weight:600;
-  text-align:center;
-  display:none;
-}
-.safe{
-  background:#e9ffee;
-  color:#1c7c36;
-}
+        /* Radar sweep effect */
+        .radar-sweep {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            z-index: 5;
+            opacity: 0.7;
+        }
 
-.suspicious{
-  background:#fff7e8;
-  color:#966000;
-}
+        .radar-sweep::before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5));
+            animation: radarSweep 3s linear infinite;
+        }
 
-.phishing{
-  background:#ffe8e8;
-  color:#a30000;
-}
+        .radar-sweep::after {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 50%;
+        }
 
-.reason-list{
-  margin-top:12px;
-  font-size:13px;
-  padding-left:16px;
-}
+        @keyframes radarSweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-</style>
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HUD overlay elements */
+        .hud-corner {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .hud-corner.top-left {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .hud-corner.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Title section */
+        .title-container {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            margin-bottom: 10px;
+            position: relative;
+            animation: glitchColor 5s infinite;
+        }
+
+        .main-title::before {
+            content: "NETRUNNER";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            color: #ff00ff;
+            opacity: 0.4;
+            z-index: -1;
+            animation: glitch 4s infinite;
+            mix-blend-mode: screen;
+        }
+
+        .main-title::after {
+            content: "NETRUNNER";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            color: #00ff00;
+            opacity: 0.3;
+            z-index: -2;
+            animation: glitch 3s infinite reverse;
+            mix-blend-mode: screen;
+        }
+
+        .subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.3rem;
+            color: #00ffff;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .version-badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            animation: holoPulse 3s ease-in-out infinite;
+        }
+
+        /* Advanced cyberpunk card */
+        .cyber-card {
+            background: linear-gradient(135deg, rgba(5, 5, 15, 0.95) 0%, rgba(15, 5, 25, 0.95) 100%);
+            border: 3px solid #00ffff;
+            padding: 40px;
+            box-shadow: 
+                0 0 40px rgba(0, 255, 255, 0.4),
+                0 0 80px rgba(255, 0, 255, 0.2),
+                inset 0 0 40px rgba(0, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+        }
+
+        /* Animated border effect */
+        .cyber-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(0, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            animation: borderRotate 4s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Holographic corners */
+        .corner-bracket {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ff00ff;
+            pointer-events: none;
+        }
+
+        .corner-bracket.tl {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+            box-shadow: -5px -5px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .corner-bracket.tr {
+            top: -3px;
+            right: -3px;
+            border-left: none;
+            border-bottom: none;
+            box-shadow: 5px -5px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .corner-bracket.bl {
+            bottom: -3px;
+            left: -3px;
+            border-right: none;
+            border-top: none;
+            box-shadow: -5px 5px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .corner-bracket.br {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+            box-shadow: 5px 5px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.1), transparent);
+            border-left: 4px solid #00ffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px #ff00ff);
+            }
+            50% { 
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px #ff00ff);
+            }
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        }
+
+        /* Input area */
+        .input-wrapper {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ff00ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .input-label::before {
+            content: "⚡";
+            animation: iconPulse 1.5s ease-in-out infinite;
+        }
+
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #00ffff;
+            padding: 16px 60px 16px 20px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.1rem;
+            color: #00ffff;
+            outline: none;
+            transition: all 0.4s;
+            letter-spacing: 1px;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
+            position: relative;
+        }
+
+        .input-field:focus {
+            border-color: #ff00ff;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 255, 0.6),
+                0 0 40px rgba(0, 255, 255, 0.3),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: holoPulse 2s ease-in-out infinite;
+        }
+
+        .input-field::placeholder {
+            color: rgba(0, 255, 255, 0.4);
+            font-style: italic;
+        }
+
+        .paste-btn {
+            position: absolute;
+            right: 12px;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.3), rgba(0, 255, 255, 0.3));
+            border: 2px solid #ff00ff;
+            padding: 10px 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ff00ff;
+            transition: all 0.3s;
+            z-index: 3;
+            clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        }
+
+        .paste-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.6), rgba(0, 255, 255, 0.6));
+            box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+            transform: scale(1.05);
+        }
+
+        /* Scan button */
+        .scan-btn {
+            width: 100%;
+            padding: 20px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border: 3px solid #00ffff;
+            cursor: pointer;
+            transition: all 0.4s;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .scan-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .scan-btn:hover::before {
+            left: 100%;
+        }
+
+        .scan-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.5) 0%, rgba(255, 0, 255, 0.5) 100%);
+            box-shadow: 
+                0 0 40px rgba(0, 255, 255, 0.8),
+                0 0 80px rgba(255, 0, 255, 0.6),
+                inset 0 0 30px rgba(0, 255, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: #ff00ff;
+        }
+
+        .scan-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            margin-top: 20px;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+            background-size: 200% 100%;
+            animation: progressAnim 2s ease-in-out, gradientMove 1.5s linear infinite;
+        }
+
+        @keyframes progressAnim {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Result box */
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            border: 3px solid;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: resultAppear 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+        }
+
+        .result-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: resultShimmer 2.5s infinite;
+        }
+
+        @keyframes resultShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes resultAppear {
+            from { 
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .safe {
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(0, 255, 255, 0.15));
+            color: #00ff00;
+            border-color: #00ff00;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 0, 0.6),
+                0 0 60px rgba(0, 255, 0, 0.3),
+                inset 0 0 30px rgba(0, 255, 0, 0.2);
+        }
+
+        .suspicious {
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.15), rgba(255, 128, 0, 0.15));
+            color: #ffff00;
+            border-color: #ffff00;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 0, 0.6),
+                0 0 60px rgba(255, 255, 0, 0.3),
+                inset 0 0 30px rgba(255, 255, 0, 0.2);
+        }
+
+        .phishing {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.15), rgba(255, 0, 255, 0.15));
+            color: #ff0000;
+            border-color: #ff0000;
+            box-shadow: 
+                0 0 30px rgba(255, 0, 0, 0.8),
+                0 0 60px rgba(255, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 0, 0, 0.2);
+            animation: glitch 0.5s infinite, resultAppear 0.6s ease-out;
+        }
+
+        /* Reasons list */
+        .reason-list {
+            margin-top: 25px;
+            padding: 0;
+            list-style: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: #00ffff;
+            line-height: 2;
+        }
+
+        .reason-list li {
+            position: relative;
+            padding: 12px 12px 12px 30px;
+            margin-bottom: 10px;
+            border-left: 3px solid #ff00ff;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.1), transparent);
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+
+        .reason-list li:hover {
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.2), transparent);
+            transform: translateX(5px);
+        }
+
+        .reason-list li::before {
+            content: "▸";
+            color: #ff00ff;
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        /* Advanced status bar */
+        .status-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(10, 0, 20, 0.7));
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            font-size: 0.9rem;
+            color: #00ffff;
+            font-family: 'Share Tech Mono', monospace;
+            clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .status-label {
+            font-size: 0.75rem;
+            color: rgba(0, 255, 255, 0.6);
+            letter-spacing: 2px;
+        }
+
+        .status-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00ffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: statusBlink 2s infinite;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(0, 255, 255, 0.6);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .warning {
+            color: #ff00ff;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+                letter-spacing: 6px;
+            }
+            
+            .cyber-card {
+                padding: 30px 25px;
+            }
+            
+            .status-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .radar-sweep {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.2rem;
+                letter-spacing: 4px;
+            }
+            
+            .cyber-card {
+                padding: 25px 20px;
+            }
+
+            .hud-corner {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Scanline effect -->
+    <div class="scanlines"></div>
+    
+    <!-- HUD corners -->
+    <div class="hud-corner top-left"></div>
+    <div class="hud-corner bottom-right"></div>
+    
+    <!-- Radar sweep -->
+    <div class="radar-sweep"></div>
+    
+    <!-- Main container -->
+    <div class="container">
+        <!-- Title -->
+        <div class="title-container">
+            <h1 class="main-title">NETRUNNER</h1>
+            <p class="subtitle">◈ ADVANCED SECURITY PROTOCOL ◈</p>
+            <span class="version-badge">SYSTEM v3.0.77</span>
+        </div>
+        
+        <!-- Cyberpunk card -->
+        <div class="cyber-card">
+            <!-- Corner brackets -->
+            <div class="corner-bracket tl"></div>
+            <div class="corner-bracket tr"></div>
+            <div class="corner-bracket bl"></div>
+            <div class="corner-bracket br"></div>
+            
+            <!-- Header -->
+            <div class="section-header">
+                <span class="section-icon">🛡️</span>
+                <h2 class="section-title">THREAT ANALYSIS ENGINE</h2>
+            </div>
+            
+            <!-- Input area -->
+            <div class="input-wrapper">
+                <label for="urlInput" class="input-label">TARGET URL</label>
+                <div class="input-container">
+                    <input id="urlInput" class="input-field" placeholder="https://example.com/suspicious-link" type="text">
+                    <button class="paste-btn" onclick="pasteURL()" title="Paste from clipboard">📋</button>
+                </div>
+            </div>
+            
+            <!-- Scan button -->
+            <button class="scan-btn" onclick="checkURL()">
+                ◈◈◈ INITIATE DEEP SCAN ◈◈◈
+            </button>
+            
+            <!-- Progress bar -->
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill"></div>
+            </div>
+            
+            <!-- Status bar -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label">SYSTEM STATUS</span>
+                    <span class="status-value">
+                        <span class="status-dot"></span>
+                        ONLINE
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">SECURITY LEVEL</span>
+                    <span class="status-value">MAXIMUM</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">LOCATION</span>
+                    <span class="status-value">NIGHT CITY</span>
+                </div>
+            </div>
+            
+            <!-- Result box -->
+            <div id="result" class="result-box"></div>
+            <ul id="reasons" class="reason-list"></ul>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>◈ NETRUNNER SECURITY PROTOCOL v3.0 ◈</p>
+            <p class="warning">⚠ NEURAL LINK ACTIVE • STAY VIGILANT ⚠</p>
+        </div>
+    </div>
 
-<div class="card">
-  <h1>Phishing URL Detector 🔍</h1>
-
-  <div class="input-wrapper">
-    <input id="urlInput" placeholder="Paste website link here">
-    <button class="paste-btn" onclick="pasteURL()" title="Paste from clipboard">📋</button>
-  </div>
-
-  <button class="check-btn" onclick="checkURL()">Check</button>
-
-  <div id="result" class="result-box"></div>
-  <ul id="reasons" class="reason-list"></ul>
-</div>
-
-<script>
-/* --------- SYSTEM PROMPT FOR AI ---------- */
-const SYSTEM_PROMPT = `
-You are a cybersecurity expert. Analyze a URL and classify it strictly as:
+    <script>
+        /* --------- SYSTEM PROMPT FOR AI ---------- */
+        const SYSTEM_PROMPT = `
+You are an advanced cybersecurity AI. Analyze URLs with extreme precision and classify as:
 
 SAFE
 SUSPICIOUS
 PHISHING
 
-Provide short reasons. Consider:
-- fake login pages
-- brand impersonation
-- unusual domains
-- IP address instead of domain
-- too many subdomains
-- HTTP vs HTTPS
-- phishing keywords (login, verify, bank, unlock)
-- shortened links
-- typosquatting
+Provide technical, concise reasons. Consider:
+- SSL/TLS certificate validation
+- Domain reputation and age
+- Brand impersonation attempts
+- URL obfuscation techniques
+- Suspicious parameters and redirects
+- IP-based hosting
+- Subdomain exploitation
+- HTTP vs HTTPS protocols
+- Common phishing keywords
+- URL shorteners
+- Typosquatting patterns
+- Special character abuse
 
-Respond in the format:
+Respond in format:
 
 VERDICT: <SAFE/SUSPICIOUS/PHISHING>
 REASONS:
-- reason 1
-- reason 2
-- reason 3
+- technical reason 1
+- technical reason 2
+- technical reason 3
 `;
 
-/* -------- LLM API CALL ---------- */
-async function enhancePrompt(userPrompt){
-  try{
-    const chatHistory = [
-      { role: 'system', content: SYSTEM_PROMPT },
-      { role: 'user', content: userPrompt }
-    ];
+        /* -------- LLM API CALL ---------- */
+        async function enhancePrompt(userPrompt) {
+            try {
+                const chatHistory = [
+                    { role: 'system', content: SYSTEM_PROMPT },
+                    { role: 'user', content: userPrompt }
+                ];
 
-    const response = await fetch("https://text.pollinations.ai/openai", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "openai",
-        messages: chatHistory
-      })
-    });
+                const response = await fetch("https://text.pollinations.ai/openai", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "openai",
+                        messages: chatHistory
+                    })
+                });
 
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content || "No AI response";
-  }catch(err){
-    console.error(err);
-    return "AI analysis failed.";
-  }
-}
+                const data = await response.json();
+                return data.choices?.[0]?.message?.content || "Neural analysis unavailable";
+            } catch(err) {
+                console.error(err);
+                return "⚠ AI ANALYSIS MODULE OFFLINE";
+            }
+        }
 
-/* -------- Paste from clipboard ---------- */
-async function pasteURL(){
-  try{
-    const text = await navigator.clipboard.readText();
-    document.getElementById("urlInput").value = text;
-  }catch(err){
-    alert("Clipboard access blocked. Please paste manually.");
-  }
-}
-/* -------- Main URL Checker ---------- */
-async function checkURL(){
+        /* -------- Paste from clipboard ---------- */
+        async function pasteURL() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById("urlInput").value = text;
+                
+                const input = document.getElementById("urlInput");
+                input.style.borderColor = "#00ff00";
+                input.style.boxShadow = "0 0 20px rgba(0, 255, 0, 0.8)";
+                setTimeout(() => {
+                    input.style.borderColor = "#00ffff";
+                    input.style.boxShadow = "";
+                }, 500);
+            } catch(err) {
+                alert("⚠ CLIPBOARD ACCESS DENIED • MANUAL INPUT REQUIRED");
+            }
+        }
 
-  const url = document.getElementById("urlInput").value.trim();
-  const result = document.getElementById("result");
-  const reasonsList = document.getElementById("reasons");
+        /* -------- Main URL Checker ---------- */
+        async function checkURL() {
+            const url = document.getElementById("urlInput").value.trim();
+            const result = document.getElementById("result");
+            const reasonsList = document.getElementById("reasons");
+            const progressBar = document.getElementById("progressBar");
 
-  reasonsList.innerHTML = "";
-  result.style.display = "block";
+            reasonsList.innerHTML = "";
+            result.style.display = "none";
+            
+            if(url === "") {
+                result.className = "result-box suspicious";
+                result.innerHTML = "⚠ INPUT BUFFER EMPTY ⚠";
+                result.style.display = "block";
+                return;
+            }
 
-  if(url === ""){
-    result.className="result-box suspicious";
-    result.innerHTML="Please enter a URL.";
-    return;
-  }
+            // Show progress
+            progressBar.style.display = "block";
+            setTimeout(() => {
+                progressBar.style.display = "none";
+            }, 2000);
 
-  let score = 0;
-  let reasons = [];
-  const testURL = url.toLowerCase();
+            let score = 0;
+            let reasons = [];
+            const testURL = url.toLowerCase();
 
-  if(testURL.startsWith("http://")){
-    score += 3;
-    reasons.push("Uses HTTP instead of HTTPS");
-  }
+            // Security checks
+            if(testURL.startsWith("http://")) {
+                score += 3;
+                reasons.push("⚠ Unencrypted HTTP protocol detected - Data transmission vulnerable");
+            }
 
-  if(testURL.includes("@")){
-    score += 3;
-    reasons.push("Contains '@' — often used to hide true link");
-  }
+            if(testURL.includes("@")) {
+                score += 3;
+                reasons.push("⚠ Authentication obfuscation detected via '@' symbol");
+            }
 
-  const ipPattern=/(\d{1,3}\.){3}\d{1,3}/;
-  if(ipPattern.test(testURL)){
-    score += 3;
-    reasons.push("Uses IP instead of domain");
-  }
+            const ipPattern = /(\d{1,3}\.){3}\d{1,3}/;
+            if(ipPattern.test(testURL)) {
+                score += 3;
+                reasons.push("⚠ Direct IP address detected - Bypassing DNS resolution");
+            }
 
-  if(url.length>70){
-    score += 2;
-    reasons.push("Unusually long URL");
-  }
+            if(url.length > 70) {
+                score += 2;
+                reasons.push("⚠ URL length exceeds safe parameters (>70 chars)");
+            }
 
-  if((url.match(/-/g)||[]).length>=3){
-    score += 2;
-    reasons.push("Too many hyphens");
-  }
+            if((url.match(/-/g)||[]).length >= 3) {
+                score += 2;
+                reasons.push("⚠ Excessive hyphenation detected - Potential brand mimicry");
+            }
 
-  const badWords=["verify","secure","update","free","gift","bonus","claim","reward","signin","login","bank","unlock"];
-  badWords.forEach(w=>{
-    if(testURL.includes(w)){
-      score += 2;
-      reasons.push(`Contains keyword "${w}"`);
-    }
-  });
+            const badWords = ["verify","secure","update","free","gift","bonus","claim","reward","signin","login","bank","unlock","account","suspended","confirm"];
+            badWords.forEach(w => {
+                if(testURL.includes(w)) {
+                    score += 2;
+                    reasons.push(`⚠ Phishing keyword detected: "${w.toUpperCase()}"`);
+                }
+            });
 
-  if((url.match(/\./g)||[]).length>=4){
-    score += 2;
-    reasons.push("Too many subdomains");
-  }
+            if((url.match(/\./g)||[]).length >= 4) {
+                score += 2;
+                reasons.push("⚠ Abnormal subdomain nesting detected");
+            }
 
-  if(testURL.includes("xn--")){
-    score += 3;
-    reasons.push("Uses punycode");
-  }
+            if(testURL.includes("xn--")) {
+                score += 3;
+                reasons.push("⚠ Punycode encoding detected - Potential IDN homograph attack");
+            }
 
-  if(score<=2){
-    result.className="result-box safe";
-    result.innerHTML="SAFE WEBSITE ✔️";
-  }else if(score<=6){
-    result.className="result-box suspicious";
-    result.innerHTML="SUSPICIOUS ⚠️ — be careful";
-  }else{
-    result.className="result-box phishing";
-    result.innerHTML="LIKELY PHISHING 🚨";
-  }
+            // Display results
+            setTimeout(() => {
+                result.style.display = "block";
+                
+                if(score <= 2) {
+                    result.className = "result-box safe";
+                    result.innerHTML = "✓ SECURE • NO THREATS DETECTED ✓";
+                } else if(score <= 6) {
+                    result.className = "result-box suspicious";
+                    result.innerHTML = "⚠ WARNING • MODERATE THREAT LEVEL ⚠";
+                } else {
+                    result.className = "result-box phishing";
+                    result.innerHTML = "☠ CRITICAL • PHISHING ATTACK DETECTED ☠";
+                }
 
-  if(reasons.length===0){
-    reasonsList.innerHTML="<li>No suspicious pattern detected.</li>";
-  }else{
-    reasons.forEach(r=>{
-      let li=document.createElement("li");
-      li.textContent=r;
-      reasonsList.appendChild(li);
-    });
-  }
-/* ----------- AI INTEGRATION ----------- */
+                if(reasons.length === 0) {
+                    reasonsList.innerHTML = "<li>✓ All security parameters within acceptable range</li>";
+                } else {
+                    reasons.forEach(r => {
+                        let li = document.createElement("li");
+                        li.textContent = r;
+                        reasonsList.appendChild(li);
+                    });
+                }
+            }, 1000);
 
-  let aiLi = document.createElement("li");
-  aiLi.innerHTML = "🤖 AI analyzing...";
-  aiLi.style.fontWeight = "600";
-  aiLi.style.marginTop = "8px";
-  reasonsList.appendChild(aiLi);
+            /* ----------- AI INTEGRATION ----------- */
+            let aiLi = document.createElement("li");
+            aiLi.innerHTML = "🤖 AI NEURAL NETWORK analyzing threat vectors...";
+            aiLi.style.fontWeight = "600";
+            aiLi.style.marginTop = "15px";
+            aiLi.style.color = "#ff00ff";
+            aiLi.style.borderColor = "#ff00ff";
+            setTimeout(() => {
+                reasonsList.appendChild(aiLi);
+            }, 1200);
 
-  const aiResponse = await enhancePrompt(
-    `Analyze this URL: ${url}
-Detected patterns: ${reasons.join(", ")}`
-  );
+            const aiResponse = await enhancePrompt(
+                `Deep scan analysis request:
+URL: ${url}
+Detected security flags: ${reasons.join(" | ")}
+Threat score: ${score}/10`
+            );
 
-  aiLi.innerHTML = "🤖 AI Verdict:<br>" + aiResponse.replace(/\n/g,"<br>");
-}
-</script>
+            setTimeout(() => {
+                aiLi.innerHTML = "🤖 AI NEURAL NETWORK VERDICT:<br><br>" + aiResponse.replace(/\n/g,"<br>");
+            }, 2500);
+        }
 
+        /* -------- Initialize ---------- */
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('urlInput').focus();
+        });
+
+        /* -------- Allow Enter key to submit ---------- */
+        document.getElementById('urlInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkURL();
+            }
+        });
+
+        /* -------- Add typing effect to input ---------- */
+        document.getElementById('urlInput').addEventListener('input', (e) => {
+            const input = e.target;
+            if(input.value.length > 0) {
+                input.style.textShadow = "0 0 8px rgba(0, 255, 255, 0.8)";
+            } else {
+                input.style.textShadow = "";
+            }
+        });
+    </script>
 </body>
 </html>
