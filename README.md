@@ -1,63 +1,77 @@
-# 🛡️ Phishing Website Detection System
-🤖 An **AI & Machine Learning–based system** designed to detect **phishing websites** by analyzing URL and website features and classifying them as **legitimate or malicious**.
+# 🛡️ NETRUNNER – Phishing Website Detection System
+🤖 **NETRUNNER v3.0** is an **advanced AI-powered phishing website detection system** designed to analyze URLs and identify **phishing, suspicious, or safe websites** using **rule-based analysis, heuristic scoring, and AI-driven reasoning**.
 
 ---
 
 ## ⚡ Project Overview
-Phishing websites are created to steal sensitive user information such as login credentials and financial details.  
-This project uses **machine learning techniques** to automatically detect phishing websites based on extracted features from URLs and web data.
+Phishing attacks are one of the most common cybersecurity threats, targeting users through fake websites that imitate legitimate platforms.  
+NETRUNNER provides a **real-time phishing detection interface** with a **cyberpunk-inspired UI**, combining **URL feature analysis** and **AI-based threat intelligence** to help users identify unsafe websites instantly.
 
-The system helps improve cybersecurity by identifying unsafe websites before users interact with them.
+The system performs:
+- URL structure analysis  
+- Heuristic risk scoring  
+- AI-based semantic threat evaluation  
 
 ---
 
 ## 📚 Problem Statement
-- Phishing attacks are increasing rapidly and pose serious cybersecurity threats.
-- Manual identification of phishing websites is unreliable and time-consuming.
-- Traditional blacklist-based methods fail to detect newly generated phishing URLs.
+- Phishing websites are rapidly increasing and evolving.
+- Users often fail to distinguish between legitimate and fake websites.
+- Traditional blacklist-based systems cannot detect newly generated phishing URLs.
+- There is a need for an **intelligent, interactive, and automated phishing detection system**.
 
-This project provides an **intelligent ML-based solution** to detect phishing websites.
+NETRUNNER addresses this problem by combining **machine logic + AI reasoning** for accurate detection.
 
 ---
 
 ## 🎯 Objectives
-- Identify phishing websites accurately 🔍
-- Classify websites as **Phishing** or **Legitimate** ⚠️✅
-- Extract and analyze URL-based features
-- Apply machine learning algorithms for prediction
-- Provide a simple and user-friendly detection system 💻
+- Detect phishing websites with high accuracy 🔍  
+- Classify URLs as **Safe, Suspicious, or Phishing**  
+- Analyze URL structure and security indicators  
+- Use AI to provide technical explanations for detection  
+- Offer a visually engaging and user-friendly interface 💻  
 
 ---
 
 ## 🛠️ Technologies Used
-- Python 3.9+
-- Scikit-learn
-- Pandas
-- NumPy
-- Matplotlib
-- Machine Learning Algorithms
-- Git & GitHub
+- HTML5
+- CSS3 (Advanced animations & cyberpunk UI)
+- JavaScript (ES6)
+- Fetch API
+- AI Language Model API
+- Prompt Engineering
+- Cybersecurity Heuristic Rules
 
 ---
 
 ## 🧠 How It Works
-1. Website URL is taken as input
-2. Relevant URL and web features are extracted
-3. Data is preprocessed and normalized
-4. Machine learning model analyzes the features
-5. Website is classified as:
-   - 🟥 Phishing Website
-   - 🟩 Legitimate Website
-6. Result is displayed to the user
+1. User enters a website URL
+2. URL is preprocessed and normalized
+3. Multiple security checks are applied:
+   - Protocol validation (HTTP/HTTPS)
+   - URL length analysis
+   - IP-based URL detection
+   - Suspicious keyword detection
+   - Special character and obfuscation checks
+   - Subdomain abuse detection
+4. A heuristic threat score is calculated
+5. AI model performs deep semantic analysis
+6. Final verdict is generated:
+   - 🟢 SAFE
+   - 🟡 SUSPICIOUS
+   - 🔴 PHISHING
+7. Technical reasons are displayed to the user
 
 ---
 
-## 🧪 Machine Learning Algorithms Used
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- Support Vector Machine (SVM)
-- Naive Bayes
+## 🧪 Machine Learning / AI Techniques Used
+- Rule-Based Heuristic Analysis
+- Natural Language Processing (NLP)
+- Prompt-based AI Reasoning
+- Threat Scoring Mechanism
+- Pattern Matching & URL Feature Extraction
+
+*(Hybrid approach: deterministic logic + AI intelligence)*
 
 ---
 
@@ -65,41 +79,48 @@ This project provides an **intelligent ML-based solution** to detect phishing we
 
 | Day | Work Description |
 |----|------------------|
-| Day 1 | Project planning and dataset collection |
-| Day 2 | Data preprocessing and feature extraction |
-| Day 3 | Exploratory Data Analysis (EDA) |
-| Day 4 | Model training |
-| Day 5 | Model evaluation and comparison |
-| Day 6 | User interface integration |
-| Day 7 | Final testing and documentation |
+| Day 1 | Problem analysis & project planning |
+| Day 2 | Research on phishing techniques & URL patterns |
+| Day 3 | UI design (Cyberpunk / Security dashboard) |
+| Day 4 | URL feature extraction & rule-based logic |
+| Day 5 | AI integration & prompt engineering |
+| Day 6 | Result visualization & optimization |
+| Day 7 | Testing, documentation & final deployment |
 
 ---
 
 ## 📈 Results
-- Accurate detection of phishing websites
-- Efficient classification performance
-- Improved security awareness
+- Accurate detection of phishing URLs
+- Clear classification with technical explanations
+- Real-time response with AI-based verdict
+- Enhanced user awareness and security insights
 
 ---
 
 ## 🔮 Future Enhancements
-- Real-time phishing detection
 - Browser extension integration
-- Deep learning-based detection models
-- Live URL scanning using APIs
+- Deep Learning-based phishing detection
+- Real-time domain reputation lookup
+- WHOIS and SSL certificate validation
+- Dataset-based ML model training
+- Multi-language support
 
 ---
 
 ## 📸 Screenshots
-*(Add screenshots of project output here)*
+*(Add screenshots of NETRUNNER UI, scan results, and threat analysis here)*
 
 ---
 
 ## 👨‍💻 Author
 - **Your Name**
+- Project: NETRUNNER – Phishing Website Detection System
 - GitHub: *your-github-username*
 
 ---
 
 ## 📄 License
-This project is developed for **educational and academic purposes**.
+This project is developed for **educational and academic purposes only**.  
+Unauthorized commercial use is not permitted.
+
+---
