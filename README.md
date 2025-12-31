@@ -1,5 +1,5 @@
 # 🛡️ NETRUNNER – Phishing Website Detection System
-🤖 **NETRUNNER v3.0** is an **advanced AI-powered phishing website detection system** designed to analyze URLs and identify **phishing, suspicious, or safe websites** using **rule-based analysis, heuristic scoring, and AI-driven reasoning**.
+🤖 **NETRUNNER ** is an **advanced AI-powered phishing website detection system** designed to analyze URLs and identify **phishing, suspicious, or safe websites** using **rule-based analysis, heuristic scoring, and AI-driven reasoning**.
 
 ---
 
